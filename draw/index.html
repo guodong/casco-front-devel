@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+
+        <title>Index</title>
+
+        <link rel="stylesheet" type="text/css" href="./index.css" />
+
+        <style>
+            #paper {
+				display: inline-block;
+                border: 1px solid gray;
+            }
+        </style>
+    </head>
+    <body>
+
+		<div>		
+			<form name="docForm">
+			选择文档类型：
+			<select id="mydocType" >
+			<option value="RS" selected="selected">需求类</option>
+			<option value="TC" >测试类</option>
+			<option value="TP">报告类</option>
+			</select>
+			输入文档名称：
+			<input type="text" id="mydocName">
+			<input type="button" value="提交文档信息" onclick="on_docSubmit()" />
+			</form>
+					
+			<form name="linkform">
+			选择起始文档：
+			<select id="mybeginLink" ></select>
+			选择目标文档：
+			<select id="mydestLink" ></select>
+			<input type="button" value="绘制关联信息" onclick="on_linkDraw()" />
+			</form>
+		</div>
+		
+        <div id="paper"></div>
+
+        <script src="./lib/jquery.js"></script>
+        <script src="./lib/lodash.js"></script>
+        <script src="./lib/backbone.js"></script>
+
+        <script src="./src/core.js"></script>
+        <script src="./src/vectorizer.js"></script>
+        <script src="./src/geometry.js"></script>
+		<script src="./src/joint.dia.graph.js"></script>
+        <script src="./src/joint.dia.cell.js"></script>
+        <script src="./src/joint.dia.element.js"></script>
+        <script src="./src/joint.dia.link.js"></script>
+        <script src="./src/joint.dia.paper.js"></script>
+
+        <script src="./plugins/joint.shapes.basic.js"></script>
+		<script src="./plugins/joint.shapes.fsa.js"></script>
+        <script src="./plugins/routers/joint.routers.orthogonal.js"></script>
+        <script src="./plugins/routers/joint.routers.manhattan.js"></script>
+        <script src="./plugins/routers/joint.routers.metro.js"></script>
+		<script src="./plugins/connectors/joint.connectors.normal.js"></script>
+		<script src="./plugins/connectors/joint.connectors.rounded.js"></script> 
+		<script src="./plugins/connectors/joint.connectors.smooth.js"></script>
+
+        <script src="./index.js"></script>
+
+    </body>
+</html>
