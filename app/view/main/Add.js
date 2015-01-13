@@ -14,7 +14,7 @@ Ext.define('cascoFront.view.main.Add', {
 
     alias: 'widget.add',
     uses: [
-        'cascoFront.view.main.DocTree'
+        //'cascoFront.view.main.DocTree'
     ],
     plain: true,
     resizable: true,

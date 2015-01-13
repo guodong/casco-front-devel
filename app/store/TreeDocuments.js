@@ -1,11 +1,11 @@
-Ext.define('cascoFront.store.Tcs', {
-    extend: 'Ext.data.Store',
-    model: 'cascoFront.model.Tc',
+Ext.define('cascoFront.store.TreeDocuments', {
+    extend: 'Ext.data.TreeStore',
+    model: 'cascoFront.model.Document',
     pageSize: 0, //disable paging
-    //autoLoad : true,
+    autoLoad : false,
     proxy: {
         type: 'ajax',
-        url: API+'tc',
+        url: API+'tree',
         reader: {
             type: 'json',
         },

@@ -34,6 +34,7 @@ Ext.define('cascoFront.view.main.MainController', {
     },
     seldoc: function(view, record, item, index, e, eOpts){
 		var json = record.data;
+    	if(!json.leaf) return;
 		var tabs = this.lookupReference('main');
 		var tab = tabs.child('#tab-' + json.id);
 		localStorage.setItem("doc_id", json.id);
@@ -41,8 +42,10 @@ Ext.define('cascoFront.view.main.MainController', {
 			var type = 'document.' + json.type;
 			tab = tabs.add({
 				itemId: 'tab-' + json.id,
+				id: 'tab-'+json.id,
 				xtype: type,
 				title: json.name,
+				doc_id: json.id,
 				closable: true
 			});
 		}

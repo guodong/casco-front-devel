@@ -7,5 +7,17 @@ Ext.define('cascoFront.model.Rs', {
         {name: 'implement', type: 'string'},
         {name: 'priority', type: 'string'},
         {name: 'contribution', type: 'string'},
-    ]
+        {name: 'description', type: 'string'},
+        {name: 'vat', type: 'string'},
+    ],
+    proxy: {
+        type: 'ajax',
+        url: API+'rs',
+        reader:{
+        	type: 'json'
+        },
+        writer: {
+            type: 'json'
+        }
+    }
 });

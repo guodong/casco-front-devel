@@ -1,11 +1,19 @@
+var tm = Ext.create('Ext.data.Store', {
+    fields: ['text', 'value'],
+    data : [
+        {"text":"EP", "value":"EP"},
+        {"text":"EG", "value":"EG"}
+    ]
+});
 Ext.define('cascoFront.view.document.TcAdd', {
     extend: 'Ext.window.Window',
 
     alias: 'widget.tcadd',
     uses: [
-        'cascoFront.view.main.DocTree',
+        'cascoFront.view.document.DocTree',
         'cascoFront.view.document.TcStep',
-        'cascoFront.view.document.DocumentController'
+        'cascoFront.view.document.DocumentController',
+        'cascoFront.view.document.TcAddForm'
     ],
     controller: 'document',
     resizable: true,
@@ -15,9 +23,20 @@ Ext.define('cascoFront.view.document.TcAdd', {
     width: 800,
     height: 550,
     autoScroll: true,
-    
+    layout: {
+        type: 'border',
+        padding: 0
+    },
+
     initComponent: function(){
     	var me = this;
+    	var st = new cascoFront.store.Rss();
+		st.load({
+			params : {
+				document_id : 1
+			}
+		});
+		me.ss = st;
     	Ext.apply(me, {
     		dockedItems: [{
                 xtype: 'toolbar',
@@ -34,58 +53,38 @@ Ext.define('cascoFront.view.document.TcAdd', {
                         text: 'Cancel',
                         glyph: 0xf112,
                         scope: me,
-                        handler : this.doHide
+                        handler : this.destroy
                     }
                 ]
             }],
-    		items: [{
-    	    	xtype: 'form',
-    	    	reference: 'TcAddform',
+            
+    		items: [
+//    		        {
+//                xtype: 'doctree',
+//                region: 'west',
+//                width: 200,
+//                collapsible: true,
+//                split: true,
+//                floatable: false,
+//
+//            },
+            {
+    	    	xtype: 'panel',
+    	    	region: 'center',
+    	    	id: 'TcAddform',
+
+    	        autoScroll: true,
     	    	bodyPadding: '10',
     	    	items: [{
-    	            anchor: '100%',
-    	            fieldLabel: 'Title',
-    	            name: 'title',
-    	            labelAlign: 'top',
-    	            msgTarget: 'under',
-    	            xtype: 'textfield'
-    	        },{
-    	            anchor: '100%',
-    	            fieldLabel: 'Description',
-    	            name: 'dsc',
-    	            labelAlign: 'top',
-    	            msgTarget: 'under',
-    	            xtype: 'textarea'
-    	        },{
-    	            anchor: '100%',
-    	            fieldLabel: 'Sources',
-    	            name: 'sources',
-    	            labelAlign: 'top',
-    	            msgTarget: 'under',
-    	            xtype: 'textarea'
-    	        },{
-    	            anchor: '100%',
-    	            fieldLabel: 'Test Method',
-    	            name: 'test_method',
-    	            labelAlign: 'top',
-    	            msgTarget: 'under',
-    	            xtype: 'textarea'
-    	        },{
-    	            anchor: '100%',
-    	            fieldLabel: 'Pre condition',
-    	            name: 'pre_condition',
-    	            labelAlign: 'top',
-    	            msgTarget: 'under',
-    	            xtype: 'textarea'
-    	        },{
-    	        	xtype: 'tcstep',
-    	        	reference: 'mgrid'
-    	        }]
+        	    	xtype: 'tcaddform',
+        	    	reference: 'TcAddform',
+        	        
+        	    }]
     	    }]
     	});
     	me.callParent(arguments);
     },
     doHide: function(){
-        this.hide();
+        this.destroy();
     },
 });

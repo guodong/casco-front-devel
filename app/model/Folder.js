@@ -1,4 +1,4 @@
-Ext.define('cascoFront.model.Document', {
+Ext.define('cascoFront.model.Folder', {
     extend: 'Ext.data.Model',
     requires:[
         'Ext.data.proxy.LocalStorage',
@@ -7,13 +7,12 @@ Ext.define('cascoFront.model.Document', {
     fields: [
         { name: 'id', type: 'int' },
         { name: 'name' },
-        {name: 'type'},
-        {name: 'project_id'},
-        {name: 'leaf'}
+        {name: 'fid'},
+        {name: 'project_id'}
     ],
     proxy: {
-        type: 'ajax',
-        url: API+'document',
+        type: 'rest',
+        url: API+'folder',
         writer: {
             type: 'json'
         }

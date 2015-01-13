@@ -1,7 +1,7 @@
-Ext.define('cascoFront.view.document.TcStep', {
+Ext.define('cascoFront.view.document.TcStepEdit', {
     extend: 'Ext.grid.Panel',
 
-    alias: 'widget.tcstep',
+    alias: 'widget.tcstepedit',
     requires: [
         'Ext.grid.plugin.CellEditing',
         'Ext.form.field.TextArea',
@@ -9,16 +9,8 @@ Ext.define('cascoFront.view.document.TcStep', {
         'Ext.toolbar.TextItem',
         'cascoFront.store.TcSteps'
     ],
-    id: 'mgrid',
-    store: Ext.create('cascoFront.store.TcSteps', {
-        data: [{
-                num: 1,
-                actions: '',
-                exp_res: ''
-            }
-        ]
 
-    }),
+    store: Ext.create('cascoFront.store.TcSteps'),
 	columns: [{
         text: 'step',
         width: '10%',
@@ -63,6 +55,7 @@ Ext.define('cascoFront.view.document.TcStep', {
     initComponent: function(){
     	var me = this;
     	this.editing = Ext.create('Ext.grid.plugin.CellEditing');
+    	this.store.setData(this.steps);
     	Ext.apply(me, {
     		plugins: [this.editing],
     		dockedItems: [{

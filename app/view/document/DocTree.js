@@ -1,5 +1,5 @@
 
-Ext.define('cascoFront.view.main.DocTree', {
+Ext.define('cascoFront.view.document.DocTree', {
     extend : 'Ext.tree.Panel',
     alias : 'widget.doctree',
     title : 'Related Items',
@@ -67,15 +67,13 @@ Ext.define('cascoFront.view.main.DocTree', {
                     },{
                         text: '<input type="checkbox">TSP-MPS-SyRS-0008',
                         leaf: true
-                    },{
-                        text: '<input type="checkbox">TSP-MPS-SyRS-0009',
-                        leaf: true
                     }]
                 }]
             }
         });
-        this.on('itemdblclick', function(view,record,item,index,e){
-            window.open("detail.html","","width=1000,height=500")
+        this.on('itemclick', function(view,record,item,index,e){
+            //window.open("detail.html","","width=1000,height=500")
+        	Ext.dom.Element.query("input").checked = true;
         });
         this.callParent(arguments);
     }
